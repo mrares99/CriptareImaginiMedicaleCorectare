@@ -1730,3 +1730,8 @@ Width imagine=220 Height imagine=220
 Timpul total pentru criptare=1,11900 secunde
 Timpul total pentru decriptare=0,46200 secunde
 
+Date=2020/08/10 09:12:03
+Width imagine=500 Height imagine=358
+Timpul total pentru criptare=2,41700 secunde
+Timpul total pentru decriptare=0,69700 secunde
+

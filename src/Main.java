@@ -24,7 +24,8 @@ public class Main {
         ViewImage viewImage=new ViewImage();
         //Flower;Flower2;Flower3;PinkFlower;Daisy;Lenna;Owl;Roses;Smoke;Umbrellas;testHeight;testWidth;testHeightScurt;testHeightScurtUmbrellas;1PixelHeight
         //2height4width;5height10width
-        BufferedImage inputBufferedImage = imageOperations.readImage(new File("D:/An4/Licenta/TestImages/Lenna.png"));
+//        BufferedImage inputBufferedImage = imageOperations.readImage(new File("D:/An4/Licenta/TestImages/Lenna.png"));
+        BufferedImage inputBufferedImage = imageOperations.readImage();
         int width=inputBufferedImage.getWidth(), height=inputBufferedImage.getHeight();
         viewImage.displayImage(inputBufferedImage,"Original",width,height);
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
