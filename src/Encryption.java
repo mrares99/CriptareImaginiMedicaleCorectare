@@ -47,7 +47,6 @@ public class Encryption {
         return recreateImageFromList(bitsFromRows,width,height,channel);
     }
 
-    //returneaza o lista de matrice,in ordine:red-green-blue
     public List<List<Integer>> handlepixels(Image img, int x, int y, int w, int h,String channel) {
         int[] pixels = new int[w * h];
         List<List<Integer>> outputRows= new ArrayList<>();
@@ -168,5 +167,4 @@ public class Encryption {
         }
         return outputBufferedImage;
     }
-
 }

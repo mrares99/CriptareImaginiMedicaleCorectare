@@ -1,5 +1,4 @@
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -18,13 +17,9 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException, NoSuchAlgorithmException {
-        //cheia este folosita ca si seed pentru generatorul de numere pseudoaleatoare
         ImageOperations imageOperations=new ImageOperations();
         Encryption encryption=new Encryption();
         ViewImage viewImage=new ViewImage();
-        //Flower;Flower2;Flower3;PinkFlower;Daisy;Lenna;Owl;Roses;Smoke;Umbrellas;testHeight;testWidth;testHeightScurt;testHeightScurtUmbrellas;1PixelHeight
-        //2height4width;5height10width
-//        BufferedImage inputBufferedImage = imageOperations.readImage(new File("D:/An4/Licenta/TestImages/Lenna.png"));
         BufferedImage inputBufferedImage = imageOperations.readImage();
         int width=inputBufferedImage.getWidth(), height=inputBufferedImage.getHeight();
         viewImage.displayImage(inputBufferedImage,"Original",width,height);
@@ -65,7 +60,7 @@ public class Main {
         executorService.execute(parallelEncryption);
 
         executorService.shutdown();
-        executorService.awaitTermination(10, TimeUnit.MINUTES);
+        executorService.awaitTermination(1, TimeUnit.MINUTES);
         long endTime=System.currentTimeMillis();
         NumberFormat formatter=new DecimalFormat("#0.00000");
         Files.write(Paths.get("TimpRulare.txt"),("Timpul total pentru criptare="+formatter.format((endTime-startTime)/1000d)+" secunde\n").getBytes(), StandardOpenOption.APPEND);
@@ -111,7 +106,7 @@ public class Main {
         executorService.execute(parallelDecryption);
 
         executorService.shutdown();
-        executorService.awaitTermination(10,TimeUnit.MINUTES);
+        executorService.awaitTermination(1,TimeUnit.MINUTES);
 
         List<BufferedImage> outputDecryptedImageList=parallelDecryption.getOutputDecryptedImageList();
         BufferedImage fin= imageOperations.constructImageFromRGBChannels(outputDecryptedImageList.get(0),outputDecryptedImageList.get(1),outputDecryptedImageList.get(2));
