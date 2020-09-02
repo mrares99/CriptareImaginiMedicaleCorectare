@@ -40,7 +40,7 @@ public class Decryption {
             for(int j=-1;++j<width;){
                 distance+=matrix[i][j];
             }
-            auxiliaryList=doCircularLeftShift(bitsFromRows.get(i),distance % width);
+            auxiliaryList=doCircularLeftShift(bitsFromRows.get(i),distance % (width*8));
             bitsFromRows.set(i,auxiliaryList);
         }
         return recreateImageFromList(bitsFromRows,width,height,channel);

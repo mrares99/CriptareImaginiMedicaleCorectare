@@ -41,7 +41,7 @@ public class Encryption {
             for(int j=-1;++j<width;){
                 distance+=matrix[i][j];
             }
-            auxiliaryList=doCircularRightShift(bitsFromRows.get(i),distance % width);
+            auxiliaryList=doCircularRightShift(bitsFromRows.get(i),distance % (width*8));
             bitsFromRows.set(i,auxiliaryList);
         }
         return recreateImageFromList(bitsFromRows,width,height,channel);
