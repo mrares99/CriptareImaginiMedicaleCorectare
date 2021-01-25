@@ -10,6 +10,13 @@ import java.util.List;
 
 public class Decryption {
 
+    /** Genereaza o secventa de dimensiunea imaginii, de numere aleatoare.
+     * @param seed Valoare pe baza careia se va efectua generarea de numere pseudoaleatoare.
+     * @param rows Numarul de linii al imaginii.
+     * @param columns Numarul de coloane al imaginii.
+     * @return Secventa de numere aleatoare.
+     * @throws NoSuchAlgorithmException
+     */
     public List<int[][]> generateRandomSequenceForChannels(long seed, int rows, int columns) throws NoSuchAlgorithmException {
         int[][] redMatrixRandomSequence = new int[rows][columns];
         int[][] greenMatrixRandomSequence = new int[rows][columns];
@@ -30,6 +37,12 @@ public class Decryption {
         return list2d;
     }
 
+    /** Efectueaza decriptarea
+     * @param matrix Matricea care contine secventa de numere aleatoare.
+     * @param colorChannel Imaginea care se doreste a fi decriptata.
+     * @param channel Canalul de culoare asupra caruia se efectueaza decriptarea.
+     * @return Imaginea decriptata.
+     */
     public BufferedImage doDecryption(int [][] matrix, BufferedImage colorChannel, String channel) {
         int width=colorChannel.getWidth(),height= colorChannel.getHeight();
         List<List<Integer>> bitsFromRows=handlepixels(colorChannel,0,0,width,height,channel);
@@ -46,6 +59,15 @@ public class Decryption {
         return recreateImageFromList(bitsFromRows,width,height,channel);
     }
 
+    /** Efectueaza despartirea pixelilor in biti
+     * @param img Imaginea asupra careia se aplica operatiile.
+     * @param x Pozitia de inceput pentru extragerea bitilor pe axa X.
+     * @param y Pozitia de inceput pentru extragerea bitilor pe axa Y.
+     * @param w Latimea imaginii.
+     * @param h Inaltimea imaginii.
+     * @param channel Canalul de culoare asupra caruia se aplica operatiile.
+     * @return Lista de biti, care reprezinta bitii din imagine.
+     */
     public List<List<Integer>> handlepixels(Image img, int x, int y, int w, int h, String channel) {
         int[] pixels = new int[w * h];
         List<List<Integer>> outputRows= new ArrayList<>();
@@ -100,11 +122,23 @@ public class Decryption {
         return outputRows;
     }
 
+    /** Efectueaza rotire circulara spre stanga.
+     * @param inputList Lista asupra careia se aplica rotatia.
+     * @param distance Distanta de rotire.
+     * @return Lista asupra careia s-a efectuat rotatia.
+     */
     public List<Integer> doCircularLeftShift(List<Integer> inputList,int distance){
         Collections.rotate(inputList,-distance);
         return inputList;
     }
 
+    /** Creeaza imagine din lista de biti.
+     * @param inputList Lista de biti.
+     * @param width Latimea imaginii.
+     * @param height Inaltimea imaginii.
+     * @param color Canalul de culoare asupra caruia se aplica reconstuctia.
+     * @return Imaginea creata din lista.
+     */
     public BufferedImage recreateImageFromList(List<List<Integer>> inputList,int width,int height,String color){
         BufferedImage outputBufferedImage=new BufferedImage(width, height,BufferedImage.TYPE_INT_RGB);
         int nrRows=inputList.size(),nrBitsInARow=inputList.get(0).size(),counter=0,columnNumber;
